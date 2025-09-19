@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:google_mlkit_face_detection/google_mlkit_face_detection.dart';
 import 'dart:async';
-import 'dart:math' as math;
 import 'dart:io';
 
 /// Configuration class for liveness detection
@@ -182,12 +181,10 @@ class _FaceLivenessState extends State<FaceLiveness> {
   // Gesture detection variables
   double? _previousLeftEyeOpenProbability;
   double? _previousRightEyeOpenProbability;
-  double? _previousMouthOpenProbability;
   double? _previousHeadEulerAngleY;
   int _blinkCount = 0;
   int _mouthOpenFrames = 0;
   int _headShakeFrames = 0;
-  bool _isSmiling = false;
   int _smileFrames = 0;
 
   // Gesture completion tracking
@@ -802,10 +799,10 @@ class _FaceLivenessState extends State<FaceLiveness> {
       return Container(
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: widget.config.successColor.withOpacity(0.1),
+          color: widget.config.successColor.withValues(alpha: 0.1),
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: widget.config.successColor.withOpacity(0.3),
+            color: widget.config.successColor.withValues(alpha: 0.3),
           ),
         ),
         child: Column(
@@ -813,7 +810,7 @@ class _FaceLivenessState extends State<FaceLiveness> {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: widget.config.successColor.withOpacity(0.2),
+                color: widget.config.successColor.withValues(alpha: 0.2),
                 shape: BoxShape.circle,
               ),
               child: Icon(
@@ -852,10 +849,10 @@ class _FaceLivenessState extends State<FaceLiveness> {
       return Container(
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: widget.config.primaryColor.withOpacity(0.1),
+          color: widget.config.primaryColor.withValues(alpha: 0.1),
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: widget.config.primaryColor.withOpacity(0.3),
+            color: widget.config.primaryColor.withValues(alpha: 0.3),
           ),
         ),
         child: Column(
@@ -864,7 +861,7 @@ class _FaceLivenessState extends State<FaceLiveness> {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: widget.config.primaryColor.withOpacity(0.2),
+                color: widget.config.primaryColor.withValues(alpha: 0.2),
                 shape: BoxShape.circle,
               ),
               child: Icon(
@@ -906,10 +903,10 @@ class _FaceLivenessState extends State<FaceLiveness> {
       return Container(
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: widget.config.primaryColor.withOpacity(0.1),
+          color: widget.config.primaryColor.withValues(alpha: 0.1),
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: widget.config.primaryColor.withOpacity(0.3),
+            color: widget.config.primaryColor.withValues(alpha: 0.3),
           ),
         ),
         child: Column(
@@ -918,7 +915,7 @@ class _FaceLivenessState extends State<FaceLiveness> {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: widget.config.primaryColor.withOpacity(0.2),
+                color: widget.config.primaryColor.withValues(alpha: 0.2),
                 shape: BoxShape.circle,
               ),
               child: Icon(
@@ -967,13 +964,13 @@ class _FaceLivenessState extends State<FaceLiveness> {
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
           decoration: BoxDecoration(
             color: _timeRemaining <= 10
-                ? widget.config.errorColor.withOpacity(0.1)
-                : widget.config.successColor.withOpacity(0.1),
+                ? widget.config.errorColor.withValues(alpha: 0.1)
+                : widget.config.successColor.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(25),
             border: Border.all(
               color: _timeRemaining <= 10
-                  ? widget.config.errorColor.withOpacity(0.3)
-                  : widget.config.successColor.withOpacity(0.3),
+                  ? widget.config.errorColor.withValues(alpha: 0.3)
+                  : widget.config.successColor.withValues(alpha: 0.3),
             ),
           ),
           child: Row(
@@ -1008,9 +1005,11 @@ class _FaceLivenessState extends State<FaceLiveness> {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: widget.config.errorColor.withOpacity(0.1),
+        color: widget.config.errorColor.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: widget.config.errorColor.withOpacity(0.3)),
+        border: Border.all(
+          color: widget.config.errorColor.withValues(alpha: 0.3),
+        ),
       ),
       child: Row(
         children: [
