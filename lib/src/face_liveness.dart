@@ -621,11 +621,6 @@ class _FaceLivenessState extends State<FaceLiveness> {
     });
   }
 
-  double _getLivenessProgress() {
-    if (widget.config.requiredGestures.isEmpty) return 0.0;
-    return _completedGestures.length / widget.config.requiredGestures.length;
-  }
-
   void _onFinalCapture() {
     _isProcessing = true;
     _timer?.cancel();
