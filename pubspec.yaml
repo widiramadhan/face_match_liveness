@@ -1,5 +1,6 @@
 name: face_match_liveness
-description: A starting point for Dart libraries or applications.
+description: A Flutter plugin for face verification and liveness detection using MobileFaceNet
+  and ML Kit. Supports image-to-image and image-to-liveness comparison.
 version: 1.0.0
 repository: https://github.com/widiramadhan/face_match_liveness
 issue_tracker: https://github.com/widiramadhan/face_match_liveness/issues
